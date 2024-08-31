@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>Intern Database</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                {% if g.logged_in %}
+                    <li><a href="{{ url_for('view_interns') }}">Interns</a></li>
+                    <li><a href="{{ url_for('view_projects') }}">Projects</a></li>
+                    <li><a href="{{ url_for('view_departments') }}">Departments</a></li>
+                    <li><a href="{{ url_for('view_database') }}">Database</a></li>
+                    <li><a href="{{ url_for('add_intern') }}">Add Intern</a></li>
+                    <li><a href="{{ url_for('add_project') }}">Add Project</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        <h1>Welcome to the Intern Database</h1><br>
+        <p>
+            <font size="+2">O</font><font size='+1'>ur Internship Management System is designed to streamline and enhance the experience of managing interns and projects. Whether you're an organization looking to oversee multiple internship programs or an intern seeking to explore new opportunities, our system provides a comprehensive solution to meet your needs.
+        </p>
+        <p>
+            With this platform, we aim to provide te user the smooth and an efficient way to manage and track the intern's progress while assigning them to projects and teams allowing them to access detailed information about projects and giving them the exposure to  departments. This also provides the user an ease of access to the database allowing them to filter and search through intern data with ease.
+        </p>
+        <p>
+            Our user-friendly interface and robust database capabilities ensure that all stakeholders have the tools they need to succeed. Explore the various features of our system, and discover how we can help you achieve a seamless and productive internship experience.</font>
+        </p>
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Intern DBMS</p>
+    </footer>
+</body>
+</html>

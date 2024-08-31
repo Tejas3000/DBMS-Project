@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+</div>
+<h1>Departments</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Manager</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for department in departments %}
+                <tr>
+                    <td>{{ department[0] }}</td>
+                    <td>{{ department[1] }}</td>
+                    <td>{{ department[2] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

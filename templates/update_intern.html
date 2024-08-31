@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intern Database</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e0e0e0; /* Lighter background */
+    color: #333;
+}
+
+header {
+    background-color: lightgrey; /* Softer green */
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #3e443e;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: black; /* Darker green on hover */
+}
+
+main {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    color: #3e8e41;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+form label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+form input, form select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 10px 15px;
+    background-color: #3e8e41;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #2e7031;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #3e8e41;
+    color: #fff;
+}
+
+thead input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tfoot {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 22px); /* Adjusting width for padding and border */
+}
+
+label {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+footer {
+    background-color: #3e8e41;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+.statistics-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.statistics-box h2 {
+    color: #3e8e41;
+}
+
+.statistics-box p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #555;
+}
+
+.update-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.update-form h1 {
+    color: #3e8e41;
+    margin-bottom: 20px;
+}
+
+.update-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.update-form input,
+.update-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.update-form button {
+    background-color: #3e8e41;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.update-form button:hover {
+    background-color: #35a337;
+}
+
+
+</style>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                {% if g.logged_in %}
+                    <li><a href="{{ url_for('view_interns') }}">Interns</a></li>
+                    <li><a href="{{ url_for('view_projects') }}">Projects</a></li>
+                    <li><a href="{{ url_for('view_departments') }}">Departments</a></li>
+                    <li><a href="{{ url_for('view_database') }}">Database</a></li>
+                    <li><a href="{{ url_for('add_intern') }}">Add Intern</a></li>
+                    <li><a href="{{ url_for('add_project') }}">Add Project</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Update Intern Data</h1>
+        <form class="update-form" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="{{ intern[1] }}" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ intern[6] }}" required>
+
+            <label for="institution">Institution</label>
+            <input type="text" id="institution" name="institution" value="{{ intern[4] }}" required>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="Male" {% if intern[4] == 'Male' %}selected{% endif %}>Male</option>
+                <option value="Female" {% if intern[4] == 'Female' %}selected{% endif %}>Female</option>
+            </select>
+
+            <label for="phone_no">Phone No.</label>
+            <input type="text" id="phone_no" name="phone_no" value="{{ intern[2] }}" required>
+
+            <label for="years_of_experience">Years of Experience</label>
+            <input type="number" id="years_of_experience" name="years_of_experience" value="{{ intern[5] }}" required>
+
+            <button type="submit">Update</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Intern DBMS</p>
+    </footer>
+</body>
+</html>

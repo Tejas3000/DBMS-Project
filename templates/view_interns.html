@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Interns List</h1>
+
+<form method="POST" action="{{ url_for('view_interns') }}">
+    <table>
+        <thead>
+            <tr>
+                <th>Name<input type="text" id="name_filter" name="name_filter" value="{{ name_filter }}"></th>
+                <th>Department<input type="text" id="dept_filter" name="dept_filter" value="{{ dept_filter }}"></th>
+                <th>Team number<input type="text" id="team_filter" name="team_filter" value="{{ team_filter }}"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for intern in interns %}
+            <tr>
+                <td>{{ intern[0] }}</td>
+                <td>{{ intern[1] }}</td>
+                <td>{{ intern[2] if intern[2] else 'No project assigned' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit">Filter</button>
+</form>
+
+{% endblock %}
