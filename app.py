@@ -8,7 +8,7 @@ app.secret_key = 'its_a_secret'
 
 db_config = {
     'user': 'root',
-    'password': 'root123',
+    'password': 'root1234',
     'host': 'localhost',
     'database': 'internship_management',
     'auth_plugin':'mysql_native_password'

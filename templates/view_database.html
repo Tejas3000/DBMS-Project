@@ -8,6 +8,11 @@
     <p>Male Interns: {{ male_interns }}</p>
     <p>Female Interns: {{ female_interns }}</p>
 </div>
+
+<form method="GET" style="display:inline;">
+    <button type="submit">Refresh</button>
+</form>
+
 <form method="POST">
     <table>
         <thead>
@@ -40,6 +45,6 @@
             {% endfor %}
         </tbody>
     </table>
-    <button type="submit">Filter</button>
+    <button type="submit"></button>
 </form>
 {% endblock %}
